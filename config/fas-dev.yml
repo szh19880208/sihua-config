@@ -1,0 +1,69 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: fas
+  profiles:
+    active: false
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.223.138.192:3306/fas?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=true
+    username: root
+    password: mysql
+#    url: jdbc:mysql://10.223.138.82:3306/fas151?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=true
+#    username: msql
+#    password: msql
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    timeout: 20000
+    #host: 10.222.138.86
+    #port: 7005
+    cluster:
+      nodes: 10.223.138.122:6001,10.223.138.122:6002,10.223.138.122:6003,10.223.138.122:6004,10.223.138.122:6005,10.223.138.122:6006
+      maxRedirects: 6
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+  aop:
+    auto: true
+#ribbon:
+#  MaxAutoRetries: 1
+#  MaxAutoRetriesNextServer: 2
+logging:
+  level:
+    com.sihuatech.fas.*: DEBUG
+#    com.sihuatech.fas.*: INFO
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://10.223.138.60:8761/eureka/
+#      defaultZone: http://eureka1:8761/eureka/,http://eureka2:8762/eureka/
+#    registry-fetch-interval-seconds: 5
+    register-with-eureka: false
+    fetch-registry: false
+fas:
+  picture:
+    temp:
+      dir: X:\\Users\\yan\\Downloads
+    ftp:
+      ip: 10.223.138.60
+      port: 21
+      username: clpsftp
+      password: clpsftp
+      path: /home/clpsftp/fasPicture
+  publish:
+    active: false
+    interval-seconds: 10
+    rs:
+      active: false
+      name: ira.interface # 推荐系统名称
+foo: true
